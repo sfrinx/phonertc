@@ -75,6 +75,15 @@ class PhoneRTCPlugin : CDVPlugin {
         }
     }
     
+    func switchCamera(command: CDVInvokedUrlCommand) {
+    
+        dispatch_async(dispatch_get_main_queue()) {
+            if (self.videoCapturer != nil) {
+                self.videoCapturer.switchCamera(null);
+            }
+        }
+    }
+    
     func disconnect(command: CDVInvokedUrlCommand) {
         let args: AnyObject = command.argumentAtIndex(0)
         if let sessionKey = args.objectForKey("sessionKey") as? String {
