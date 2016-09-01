@@ -156,7 +156,12 @@ public class PhoneRTCPlugin extends CordovaPlugin {
 		} else if (action.equals("switchCamera")) {
 			cordova.getActivity().runOnUiThread(new Runnable() {
 				public void run() {
-					_videoCapturer.switchCamera(null);
+					if (_videoView != null) {
+						_videoCapturer.switchCamera(null);
+					}
+					if (_videoView != null) {
+						_videoView.setScaleX(-1f);
+					}
 				}
 			});
 
