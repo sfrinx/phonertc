@@ -206,3 +206,7 @@ exports.showVideoView = function () {
 exports.checkPermissions = function (success, fail) {
   exec(success, fail, 'PhoneRTCPlugin', 'checkPermissions', []);
 };
+
+exports.switchCamera = function (success, fail) {
+  exec(success, fail, 'PhoneRTCPlugin', 'switchCamera', []);
+};
