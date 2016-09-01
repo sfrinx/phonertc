@@ -130,6 +130,10 @@ Session.prototype.call = function (success, error) {
   }]);
 };
 
+Session.prototype.switchCamera = function (success, error) {
+  exec(success, error, 'PhoneRTCPlugin', 'switchCamera', []);
+};
+
 Session.prototype.receiveMessage = function (data) {
   exec(null, null, 'PhoneRTCPlugin', 'receiveMessage', [{
     sessionKey: this.sessionKey,
@@ -205,8 +209,4 @@ exports.showVideoView = function () {
 
 exports.checkPermissions = function (success, fail) {
   exec(success, fail, 'PhoneRTCPlugin', 'checkPermissions', []);
-};
-
-exports.switchCamera = function (success, fail) {
-  exec(success, fail, 'PhoneRTCPlugin', 'switchCamera', []);
 };
