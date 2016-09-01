@@ -304,8 +304,8 @@ public class PhoneRTCPlugin extends CordovaPlugin {
 	// Cycle through likely device names for the camera and return the first
 	// capturer that works, or crash if none do.
 	private VideoCapturerAndroid getVideoCapturer() {
-		String[] cameraFacing = { "front", "back" };
-		int[] cameraIndex = { 0, 1 };
+		String[] cameraFacing = { "back", "front" };
+		int[] cameraIndex = { 1, 0 };
 		int[] cameraOrientation = { 0, 90, 180, 270 };
 		for (String facing : cameraFacing) {
 			for (int index : cameraIndex) {
