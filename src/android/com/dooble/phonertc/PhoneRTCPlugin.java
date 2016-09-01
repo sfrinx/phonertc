@@ -152,6 +152,13 @@ public class PhoneRTCPlugin extends CordovaPlugin {
 					session.createOrUpdateStream();
 				}
 			});
+			
+		} else if (action.equals("switchCamera")) {
+			cordova.getActivity().runOnUiThread(new Runnable() {
+				public void run() {
+					_videoCapturer.switchCamera(null);
+				}
+			});
 
 		} else if (action.equals("disconnect")) {
 			JSONObject container = args.getJSONObject(0);
