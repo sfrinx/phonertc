@@ -52,6 +52,7 @@ public class PhoneRTCPlugin extends CordovaPlugin {
 	private WebView.LayoutParams _videoParams;
 	private boolean _shouldDispose = true;
 	private boolean _initializedAndroidGlobals = false;
+	private boolean frontCamera = true;
 
 	public CallbackContext callbackContext;
 
@@ -158,6 +159,8 @@ public class PhoneRTCPlugin extends CordovaPlugin {
 				public void run() {
 					if (_videoView != null) {
 						_videoCapturer.switchCamera(null);
+						frontCamera = !frontCamera;
+						refreshVideoView();
 					}
 				}
 			});
@@ -317,6 +320,8 @@ public class PhoneRTCPlugin extends CordovaPlugin {
 					VideoCapturerAndroid capturer = VideoCapturerAndroid.create(name, null);
 					if (capturer != null) {
 						// logAndToast("Using camera: " + name);
+						if(cameraIndex == 1)
+							frontCamera = false;
 						return capturer;
 					}
 				}
@@ -413,7 +418,7 @@ public class PhoneRTCPlugin extends CordovaPlugin {
 
 					pair.setVideoRenderer(new VideoRenderer(
 							VideoRendererGui.create(x, y, widthPercentage, heightPercentage,
-									RendererCommon.ScalingType.SCALE_ASPECT_BALANCED, true)));
+									RendererCommon.ScalingType.SCALE_ASPECT_BALANCED, false)));
 
 					pair.getVideoTrack().addRenderer(pair.getVideoRenderer());
 
@@ -430,7 +435,7 @@ public class PhoneRTCPlugin extends CordovaPlugin {
 												getPercentage(_videoConfig.getLocal().getWidth(), _videoConfig.getContainer().getWidth()),
 												getPercentage(_videoConfig.getLocal().getHeight(), _videoConfig.getContainer().getHeight()),
 								RendererCommon.ScalingType.SCALE_ASPECT_FILL,
-												true)));
+												frontCamera)));
 
 			}
 		}
