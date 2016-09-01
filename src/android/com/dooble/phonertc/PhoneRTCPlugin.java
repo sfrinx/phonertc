@@ -159,9 +159,6 @@ public class PhoneRTCPlugin extends CordovaPlugin {
 					if (_videoView != null) {
 						_videoCapturer.switchCamera(null);
 					}
-					if (_videoView != null) {
-						_videoView.setScaleX(-1f);
-					}
 				}
 			});
 
