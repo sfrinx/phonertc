@@ -429,7 +429,7 @@ public class PhoneRTCPlugin extends CordovaPlugin {
 			}
 
 			if (_videoConfig.getLocal() != null && _localVideo != null) {
-				console.log("FRONT CAMERAAAAAAAAAAAAAAAAAAASAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA: " + frontCamera);
+				System.out.println("FRONT CAMERAAAAAAAAAAAAAAAAAAASAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA: " + frontCamera);
 				_localVideo.getVideoTrack().addRenderer(new VideoRenderer(
 						VideoRendererGui.create(getPercentage(_videoConfig.getLocal().getX(), _videoConfig.getContainer().getWidth()),
 												getPercentage(_videoConfig.getLocal().getY(), _videoConfig.getContainer().getHeight()),
