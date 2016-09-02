@@ -320,10 +320,11 @@ public class PhoneRTCPlugin extends CordovaPlugin {
 					VideoCapturerAndroid capturer = VideoCapturerAndroid.create(name, null);
 					if (capturer != null) {
 						// logAndToast("Using camera: " + name);
-						if("back".equals(facing)) {
+						if("back".equals(facing)) 
 							frontCamera = false;
-							return capturer;
-						}
+							
+						return capturer;
+						
 					}
 				}
 			}
