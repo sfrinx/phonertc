@@ -320,7 +320,6 @@ public class PhoneRTCPlugin extends CordovaPlugin {
 					VideoCapturerAndroid capturer = VideoCapturerAndroid.create(name, null);
 					if (capturer != null) {
 						// logAndToast("Using camera: " + name);
-						System.out.println("CAMERAAAAAAAAAAAAA: " + index);
 						if(index == 1)
 							frontCamera = false;
 						return capturer;
@@ -430,6 +429,7 @@ public class PhoneRTCPlugin extends CordovaPlugin {
 			}
 
 			if (_videoConfig.getLocal() != null && _localVideo != null) {
+				console.log("FRONT CAMERAAAAAAAAAAAAA: " + frontCamera);
 				_localVideo.getVideoTrack().addRenderer(new VideoRenderer(
 						VideoRendererGui.create(getPercentage(_videoConfig.getLocal().getX(), _videoConfig.getContainer().getWidth()),
 												getPercentage(_videoConfig.getLocal().getY(), _videoConfig.getContainer().getHeight()),
