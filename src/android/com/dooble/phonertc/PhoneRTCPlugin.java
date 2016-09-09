@@ -53,6 +53,7 @@ public class PhoneRTCPlugin extends CordovaPlugin {
 	private boolean _shouldDispose = true;
 	private boolean _initializedAndroidGlobals = false;
 	private boolean frontCamera = true;
+	private boolean defaultCamera = true;
 
 	public CallbackContext callbackContext;
 
@@ -181,7 +182,8 @@ public class PhoneRTCPlugin extends CordovaPlugin {
 			return true;
 		} else if (action.equals("setVideoView")) {
 			_videoConfig = VideoConfig.fromJSON(args.getJSONObject(0));
-
+			frontCamera = defaultCamera;
+			
 			// make sure it's not junk
 			if (_videoConfig.getContainer().getWidth() == 0 || _videoConfig.getContainer().getHeight() == 0) {
 				return false;
@@ -321,7 +323,7 @@ public class PhoneRTCPlugin extends CordovaPlugin {
 					if (capturer != null) {
 						// logAndToast("Using camera: " + name);
 						if("back".equals(facing)) 
-							frontCamera = false;
+							defaultCamera = false;
 							
 						return capturer;
 						
