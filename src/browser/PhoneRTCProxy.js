@@ -169,7 +169,7 @@ Session.prototype.call = function () {
         { 
           url: self.config.turn.host, 
           username: self.config.turn.username, 
-          password: self.config.turn.password 
+          credential: self.config.turn.password 
         }
       ]
     }, { optional: [ { DtlsSrtpKeyAgreement: true } ]});
