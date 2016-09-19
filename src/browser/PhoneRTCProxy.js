@@ -3,7 +3,7 @@ var IceCandidate = window.RTCIceCandidate;
 var SessionDescription = window.RTCSessionDescription;
 var MediaStream = window.MediaStream || window.webkitMediaStream;
 
-navigator.getUserMedia = navigator.getUserMedia || navigator.mozGetUserMedia || navigator.webkitGetUserMedia;
+navigator.getUserMedia = navigator.mediaDevices.getUserMedia || navigator.getUserMedia || navigator.webkitGetUserMedia;
 
 var localStreams = [];
 var localVideoTrack, localAudioTrack;
