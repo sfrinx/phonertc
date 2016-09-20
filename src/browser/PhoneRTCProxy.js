@@ -1,7 +1,7 @@
-var PeerConnection = window.RTCPeerConnection || window.webkitRTCPeerConnection;
-var IceCandidate = window.RTCIceCandidate;
-var SessionDescription = window.RTCSessionDescription;
-var MediaStream = window.MediaStream || window.webkitMediaStream;
+var PeerConnection = window.RTCPeerConnection || window.webkitRTCPeerConnection || window.mozRTCPeerConnection;
+var IceCandidate = window.RTCIceCandidate || window.mozRTCIceCandidate;
+var SessionDescription = window.RTCSessionDescription || window.mozRTCSessionDescription;
+var MediaStream = window.MediaStream || window.webkitMediaStream || || window.mozMediaStream;
 
 navigator.getUserMedia = navigator.getUserMedia || navigator.mozGetUserMedia || navigator.webkitGetUserMedia;
 
@@ -187,8 +187,8 @@ Session.prototype.call = function () {
   }
 
   var missingStreams = { 
-    video: self.config.streams.video && !localVideoTrack, 
-    audio: self.config.streams.audio && !localAudioTrack 
+    video: self.config.streams.video && localVideoTrack != null, 
+    audio: self.config.streams.audio && localAudioTrack != null 
   };
 
   if (missingStreams.audio || missingStreams.video) {
