@@ -107,18 +107,18 @@ function Session(sessionKey, config, sendMessageCallback) {
     }
     return newLine.join(' ');
   };
-}
 
-Session.prototype.test = function() {
+  self.test = function() {
   
-  var self = this;
-  self.sendMessage({
-    prova: 'ciao'
-  });
+    self.sendMessage({
+      prova: 'ciao 1'
+    });
+    
+    self.sendMessage({
+      prova: 'ciao 2'
+    });
+  }
   
-  this.sendMessage({
-    prova: 'ciao'
-  });
 }
 
 Session.prototype.createOrUpdateStream = function () {
