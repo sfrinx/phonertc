@@ -247,7 +247,6 @@ Session.prototype.renegotiate = function () {
 };
 
 Session.prototype.disconnect = function (sendByeMessage) {
-  console.log(this.videoView);
   if (this.videoView) {
     removeRemoteStream(this.videoView);
   }
@@ -397,10 +396,8 @@ function addRemoteStream(stream) {
 }
 
 function removeRemoteStream(videoView) {
-  console.log(remoteVideoViews);
   videoView.parentNode.removeChild(videoView);
   remoteVideoViews.splice(videoView, 1);
-  console.log(remoteVideoViews);
 
   refreshVideoContainer();
 }
