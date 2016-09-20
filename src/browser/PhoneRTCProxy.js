@@ -128,10 +128,9 @@ Session.prototype.createOrUpdateStream = function () {
 
 Session.prototype.sendOffer = function () {
   var self = this;
-  self.peerConnection.createOffer(function (sdp) {
-    self.peerConnection.setLocalDescription(sdp, function () {
-      console.log('Set session description success.');
-    }, function (error) {
+  self.peerConnection.createOffer().then(function (sdp) {
+      self.peerConnection.setLocalDescription(sdp);
+    .catch(function (error) {
       console.log(error);
     });
 
