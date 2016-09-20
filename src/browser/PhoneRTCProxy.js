@@ -128,17 +128,13 @@ Session.prototype.createOrUpdateStream = function () {
 
 Session.prototype.sendOffer = function () {
   var self = this;
-  self.peerConnection.createOffer().then(function (sdp) {
+  self.peerConnection.createOffer({ mandatory: { OfferToReceiveAudio: true, OfferToReceiveVideo: !!videoConfig }}).then(function (sdp) {
     self.peerConnection.setLocalDescription(sdp);
+    self.sendMessage(sdp);
   })
   .catch(function (error) {
     console.log(error);
   });
-
-    self.sendMessage(sdp);
-  }, function (error) {
-    console.log(error);
-  }, { mandatory: { OfferToReceiveAudio: true, OfferToReceiveVideo: !!videoConfig }});
 }
 
 Session.prototype.sendAnswer = function () {
