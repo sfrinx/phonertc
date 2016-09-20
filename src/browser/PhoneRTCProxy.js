@@ -135,7 +135,7 @@ Session.prototype.sendOffer = function () {
       console.log(error);
     });
 
-    self.sendMessage(sdp);
+    self.sendMessage(sdp.toJSON());
   }, function (error) {
     console.log(error);
   }, { mandatory: { OfferToReceiveAudio: true, OfferToReceiveVideo: !!videoConfig }});
