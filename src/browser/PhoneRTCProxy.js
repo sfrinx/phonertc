@@ -187,8 +187,8 @@ Session.prototype.call = function () {
   }
 
   var missingStreams = { 
-    video: self.config.streams.video && localVideoTrack != null, 
-    audio: self.config.streams.audio && localAudioTrack != null 
+    video: self.config.streams.video && !localVideoTrack, 
+    audio: self.config.streams.audio && !localAudioTrack 
   };
 
   if (missingStreams.audio || missingStreams.video) {
