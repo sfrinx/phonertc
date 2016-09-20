@@ -13,6 +13,9 @@ function Session(sessionKey, config, sendMessageCallback) {
   self.sessionKey = sessionKey;
   self.config = config;
   self.sendMessage = sendMessageCallback;
+  self.sendMessage({
+    prova: 'ciao'
+  });
 
   self.onIceCandidate = function (event) {
     if (event.candidate) {
