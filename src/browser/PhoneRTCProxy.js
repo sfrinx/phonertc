@@ -1,7 +1,7 @@
 var PeerConnection = window.RTCPeerConnection || window.webkitRTCPeerConnection || window.mozRTCPeerConnection;
 var IceCandidate = window.RTCIceCandidate || window.mozRTCIceCandidate;
 var SessionDescription = window.RTCSessionDescription || window.mozRTCSessionDescription;
-var MediaStream = window.MediaStream || window.webkitMediaStream || || window.mozMediaStream;
+var MediaStream = window.MediaStream || window.webkitMediaStream || window.mozMediaStream;
 
 navigator.getUserMedia = navigator.getUserMedia || navigator.mozGetUserMedia || navigator.webkitGetUserMedia;
 
