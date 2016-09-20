@@ -280,6 +280,8 @@ module.exports = {
         type: '__set_session_key',
         sessionKey: sessionKey
       });
+      
+      sessions[sessionKey] = session;
     });
   },
   call: function (success, error, options) {
