@@ -68,7 +68,7 @@ function Session(config) {
     }
   }
 
-  exec(onSendMessage, null, 'PhoneRTCPlugin', 'createSessionObject', [self.sessionKey, config]);
+  exec(onSendMessage, null, 'PhoneRTCPlugin', 'createSessionObject', [self.sessionKey, config, onSendMessage]);
 };
 
 Session.prototype.on = function (eventName, fn) {
