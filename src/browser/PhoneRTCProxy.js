@@ -272,7 +272,6 @@ var remoteVideoViews = [];
 
 module.exports = {
   createSessionObject: function (success, error, options) {
-    
     setTimeout(function() {
       var sessionKey = options[0];
       var session = new Session(sessionKey, options[1], success);
@@ -284,81 +283,95 @@ module.exports = {
     });
   },
   call: function (success, error, options) {
-    sessions[options[0].sessionKey].call();
+    setTimeout(function() {
+      sessions[options[0].sessionKey].call();
+    });
   },
   receiveMessage: function (success, error, options) {
-    sessions[options[0].sessionKey]
-      .receiveMessage(JSON.parse(options[0].message));
+    setTimeout(function() {
+      sessions[options[0].sessionKey]
+        .receiveMessage(JSON.parse(options[0].message));
+    });
   },
   renegotiate: function (success, error, options) {
-    console.log('Renegotiation is currently only supported in iOS and Android.')
-    // var session = sessions[options[0].sessionKey];
-    // session.config = options[0].config;
-    // session.createOrUpdateStream();
-    // session.renegotiate();
+    setTimeout(function() {
+      console.log('Renegotiation is currently only supported in iOS and Android.')
+      // var session = sessions[options[0].sessionKey];
+      // session.config = options[0].config;
+      // session.createOrUpdateStream();
+      // session.renegotiate();
+    });
   },
   disconnect: function (success, error, options) {
-    var session = sessions[options[0].sessionKey];
-    if (session) {
-      session.disconnect(true);
-    }
+    setTimeout(function() {
+      var session = sessions[options[0].sessionKey];
+      if (session) {
+        session.disconnect(true);
+      }
+    });
   },
   setVideoView: function (success, error, options) {
-    videoConfig = options[0];
-
-    if (videoConfig.containerParams.size[0] === 0 
-        || videoConfig.containerParams.size[1] === 0) {
-      return;
-    }
-
-    if (videoConfig.local) {
-      if (!localVideoView) {
-        localVideoView = document.createElement('video');
-        localVideoView.autoplay = true;
-        localVideoView.muted = true;
-        localVideoView.style.position = 'absolute';
-        localVideoView.style.zIndex = 999;
-        localVideoView.addEventListener("loadedmetadata", scaleToFill);
-
-        refreshLocalVideoView();
-
-        if (!localVideoTrack) {
-          navigator.getUserMedia({ audio: true, video: true }, function (stream) {
-            localStreams.push(stream);
-
-            localAudioTrack = stream.getAudioTracks()[0];
-            localVideoTrack = stream.getVideoTracks()[0];
-
-            localVideoView.src = URL.createObjectURL(stream);
-            localVideoView.load();
-          }, function (error) {
-            console.log(error);
-          }); 
-        } else {
-          var stream = new MediaStream();
-          stream.addTrack(localVideoTrack);
-
-          localVideoView.src = URL.createObjectURL(stream);
-          localVideoView.load();         
-        }
-
-        document.body.appendChild(localVideoView);
-      } else {    
-        refreshLocalVideoView();
-        refreshVideoContainer();
+    setTimeout(function() {
+      videoConfig = options[0];
+  
+      if (videoConfig.containerParams.size[0] === 0 
+          || videoConfig.containerParams.size[1] === 0) {
+        return;
       }
-    }
+  
+      if (videoConfig.local) {
+        if (!localVideoView) {
+          localVideoView = document.createElement('video');
+          localVideoView.autoplay = true;
+          localVideoView.muted = true;
+          localVideoView.style.position = 'absolute';
+          localVideoView.style.zIndex = 999;
+          localVideoView.addEventListener("loadedmetadata", scaleToFill);
+  
+          refreshLocalVideoView();
+  
+          if (!localVideoTrack) {
+            navigator.getUserMedia({ audio: true, video: true }, function (stream) {
+              localStreams.push(stream);
+  
+              localAudioTrack = stream.getAudioTracks()[0];
+              localVideoTrack = stream.getVideoTracks()[0];
+  
+              localVideoView.src = URL.createObjectURL(stream);
+              localVideoView.load();
+            }, function (error) {
+              console.log(error);
+            }); 
+          } else {
+            var stream = new MediaStream();
+            stream.addTrack(localVideoTrack);
+  
+            localVideoView.src = URL.createObjectURL(stream);
+            localVideoView.load();         
+          }
+  
+          document.body.appendChild(localVideoView);
+        } else {    
+          refreshLocalVideoView();
+          refreshVideoContainer();
+        }
+      }
+    });
   },
   hideVideoView: function (success, error, options) {
-    localVideoView.style.display = 'none';
-    remoteVideoViews.forEach(function (remoteVideoView) {
-      remoteVideoView.style.display = 'none';
+    setTimeout(function() {
+      localVideoView.style.display = 'none';
+      remoteVideoViews.forEach(function (remoteVideoView) {
+        remoteVideoView.style.display = 'none';
+      });
     });
   },
   showVideoView: function (success, error, options) {
-    localVideoView.style.display = '';
-    remoteVideoViews.forEach(function (remoteVideoView) {
-      remoteVideoView.style.display = '';
+    setTimeout(function() {
+      localVideoView.style.display = '';
+      remoteVideoViews.forEach(function (remoteVideoView) {
+        remoteVideoView.style.display = '';
+      });
     });
   }
 };
