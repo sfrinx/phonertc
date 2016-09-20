@@ -129,10 +129,11 @@ Session.prototype.createOrUpdateStream = function () {
 Session.prototype.sendOffer = function () {
   var self = this;
   self.peerConnection.createOffer().then(function (sdp) {
-      self.peerConnection.setLocalDescription(sdp);
-    .catch(function (error) {
-      console.log(error);
-    });
+    self.peerConnection.setLocalDescription(sdp);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
 
     self.sendMessage(sdp);
   }, function (error) {
