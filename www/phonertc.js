@@ -59,6 +59,7 @@ function Session(config) {
   }
 
   function onSendMessage(data) {
+    console.log(data);
     if (data.type === '__answered') {
       callEvent('answer');
     } else if (data.type === '__disconnected') {
