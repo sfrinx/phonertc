@@ -327,6 +327,7 @@ module.exports = {
           localVideoView.autoplay = true;
           localVideoView.muted = true;
           localVideoView.style.position = 'absolute';
+          localVideoView.style.transform = 'scaleX(-1)';
           localVideoView.style.zIndex = 999;
           localVideoView.addEventListener("loadedmetadata", scaleToFill);
   
