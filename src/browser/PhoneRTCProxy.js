@@ -13,7 +13,14 @@ function Session(sessionKey, config, sendMessageCallback) {
   self.sessionKey = sessionKey;
   self.config = config;
   self.sendMessage = sendMessageCallback;
-  self.test();
+  
+  self.sendMessage({
+      prova: 'ciao 1'
+    });
+    
+    self.sendMessage({
+      prova: 'ciao 2'
+    });
 
   self.onIceCandidate = function (event) {
     if (event.candidate) {
@@ -107,18 +114,6 @@ function Session(sessionKey, config, sendMessageCallback) {
     }
     return newLine.join(' ');
   };
-
-  self.test = function() {
-  
-    self.sendMessage({
-      prova: 'ciao 1'
-    });
-    
-    self.sendMessage({
-      prova: 'ciao 2'
-    });
-  }
-  
 }
 
 Session.prototype.createOrUpdateStream = function () {
