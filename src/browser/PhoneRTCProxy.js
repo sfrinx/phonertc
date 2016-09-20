@@ -135,8 +135,6 @@ Session.prototype.sendOffer = function () {
       console.log(error);
     });
     
-    console.log(self);
-    console.log(self.sessionKey);
     self.sendMessage(sdp);
   }, function (error) {
     console.log(error);
