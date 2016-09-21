@@ -313,6 +313,12 @@ module.exports = {
   },
   setVideoView: function (success, error, options) {
     setTimeout(function() {
+      
+      for(var session in sessions) {
+        console.log(session);
+        return;
+      }
+      
       videoConfig = options[0];
   
       if (videoConfig.containerParams.size[0] === 0 
