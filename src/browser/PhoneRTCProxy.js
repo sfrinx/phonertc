@@ -319,13 +319,11 @@ module.exports = {
         hasSession = true;
       }
       
-      if(!hasSession)
-        return;
-      
       videoConfig = options[0];
   
       if (videoConfig.containerParams.size[0] === 0 
-          || videoConfig.containerParams.size[1] === 0) {
+          || videoConfig.containerParams.size[1] === 0
+          || !hasSession) {
         return;
       }
   
