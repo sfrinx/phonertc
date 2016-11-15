@@ -18,7 +18,7 @@
         	<clobbers target="cordova.plugins.phonertc" />
 	</js-module>
 
-	<platform name="ios">
+	<!--platform name="ios">
 		<info>---------------------
 PhoneRTC Installation
 ---------------------
@@ -97,7 +97,7 @@ In order to install PhoneRTC on iOS, please follow these steps:
 		<framework src="GLKit.framework" />
 
 		<source-file src="libs/ios/libWebRTC-12671-arm-intel-Release.a" framework="true" />
-    </platform>
+    </platform -->
 
     <platform name="android">
         <source-file src="src/android/com/dooble/phonertc/PhoneRTCPlugin.java" target-dir="src/com/dooble/phonertc" />
