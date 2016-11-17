@@ -97,7 +97,7 @@ In order to install PhoneRTC on iOS, please follow these steps:
 		<framework src="AudioToolbox.framework" />
 		<framework src="GLKit.framework" />
 
-		<source-file src="libs/ios/libWebRTC-12671-arm-intel-Release.a" framework="true" />
+		<source-file src="libs/ios/libWebRTC-LATEST-Universal-Release.a" framework="true" />
     		
 		<preference name="CAMERA_USAGE_DESCRIPTION" default=" " />
 		<config-file target="*-Info.plist" parent="NSCameraUsageDescription">
