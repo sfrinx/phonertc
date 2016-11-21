@@ -78,9 +78,7 @@ class PhoneRTCPlugin : CDVPlugin {
     func switchCamera(command: CDVInvokedUrlCommand) {
     
         dispatch_async(dispatch_get_main_queue()) {
-            if (self.videoCapturer != nil) {
-                self.videoCapturer.switchCamera(null);
-            }
+            NSLog("Switch camera")
         }
     }
     
@@ -154,8 +152,8 @@ class PhoneRTCPlugin : CDVPlugin {
                         )
                     } else {
                         // otherwise, create the local video view
-                        self.localVideoView = self.createVideoView(params)
-                        self.localVideoTrack!.addRenderer(self.localVideoView!)
+                        //self.localVideoView = self.createVideoView(params)
+                        //self.localVideoTrack!.addRenderer(self.localVideoView!)
                     }
                 }
                 
@@ -299,6 +297,11 @@ class PhoneRTCPlugin : CDVPlugin {
         
         if n == 0 {
             return
+        }
+        
+        if self.localVideoView == nil {
+            self.localVideoView = self.createVideoView(self.videoConfig!.local!)
+            self.localVideoTrack!.addRenderer(self.localVideoView!)
         }
         
         let rows = n < 9 ? 2 : 3
