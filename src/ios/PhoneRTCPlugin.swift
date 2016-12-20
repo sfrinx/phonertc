@@ -27,7 +27,7 @@ class PhoneRTCPlugin : CDVPlugin {
     func createSessionObject(command: CDVInvokedUrlCommand) {
         if let sessionKey = command.argumentAtIndex(0) as? String {
             // create a session and initialize it.
-            if let args: AnyObject = command.argumentAtIndex(1) {
+            if let args: Any = command.argumentAtIndex(1) {
                 let config = SessionConfig(data: args)
                 let session = Session(plugin: self, peerConnectionFactory: peerConnectionFactory,
                     config: config, callbackId: command.callbackId,
@@ -38,7 +38,7 @@ class PhoneRTCPlugin : CDVPlugin {
     }
     
     func call(command: CDVInvokedUrlCommand) {
-        let args: AnyObject = command.argumentAtIndex(0)
+        let args: Any = command.argumentAtIndex(0)
         if let sessionKey = args.objectForKey("sessionKey") as? String {
             dispatch_async(dispatch_get_main_queue()) {
                 if let session = self.sessions[sessionKey] {
@@ -49,7 +49,7 @@ class PhoneRTCPlugin : CDVPlugin {
     }
     
     func receiveMessage(command: CDVInvokedUrlCommand) {
-        let args: AnyObject = command.argumentAtIndex(0)
+        let args: Any = command.argumentAtIndex(0)
         if let sessionKey = args.objectForKey("sessionKey") as? String {
             if let message = args.objectForKey("message") as? String {
                 if let session = self.sessions[sessionKey] {
@@ -62,9 +62,9 @@ class PhoneRTCPlugin : CDVPlugin {
     }
     
     func renegotiate(command: CDVInvokedUrlCommand) {
-        let args: AnyObject = command.argumentAtIndex(0)
+        let args: Any = command.argumentAtIndex(0)
         if let sessionKey = args.objectForKey("sessionKey") as? String {
-            if let config: AnyObject = args.objectForKey("config") {
+            if let config: Any = args.objectForKey("config") {
                 dispatch_async(dispatch_get_main_queue()) {
                     if let session = self.sessions[sessionKey] {
                         session.config = SessionConfig(data: config)
@@ -83,7 +83,7 @@ class PhoneRTCPlugin : CDVPlugin {
     }
     
     func disconnect(command: CDVInvokedUrlCommand) {
-        let args: AnyObject = command.argumentAtIndex(0)
+        let args: Any = command.argumentAtIndex(0)
         if let sessionKey = args.objectForKey("sessionKey") as? String {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
                 if (self.sessions[sessionKey] != nil) {
@@ -97,14 +97,14 @@ class PhoneRTCPlugin : CDVPlugin {
         let json = (try! NSJSONSerialization.JSONObjectWithData(message,
             options: NSJSONReadingOptions.MutableLeaves)) as! NSDictionary
         
-        let pluginResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAsDictionary: json as [NSObject : AnyObject])
+        let pluginResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAsDictionary: json as [NSObject : Any])
         pluginResult.setKeepCallbackAsBool(true);
         
         self.commandDelegate!.sendPluginResult(pluginResult, callbackId:callbackId)
     }
     
     func setVideoView(command: CDVInvokedUrlCommand) {
-        let config: AnyObject = command.argumentAtIndex(0)
+        let config: Any = command.argumentAtIndex(0)
         
         dispatch_async(dispatch_get_main_queue()) {
             // create session config from the JS params
