@@ -102,7 +102,7 @@ class Session {
     func receiveMessage(message: String) {
         // Parse the incoming JSON message.
         var error : NSError?
-        let data : AnyObject?
+        let data : Any?
         do {
             data = try NSJSONSerialization.JSONObjectWithData(
                         message.dataUsingEncoding(NSUTF8StringEncoding)!,
@@ -111,7 +111,7 @@ class Session {
             error = error1
             data = nil
         }
-        if let object: AnyObject = data {
+        if let object: Any = data {
             // Log the message to console.
             print("Received Message: \(object)")
             // If the message has a type try to handle it.
@@ -163,7 +163,7 @@ class Session {
         
         if self.peerConnection != nil {
             if sendByeMessage {
-                let json: AnyObject = [
+                let json: Any = [
                     "type": "bye"
                 ]
             
@@ -178,7 +178,7 @@ class Session {
             self.queuedRemoteCandidates = nil
         }
         
-        let json: AnyObject = [
+        let json: Any = [
             "type": "__disconnected"
         ]
         
